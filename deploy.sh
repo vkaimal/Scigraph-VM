@@ -11,11 +11,8 @@ usage()
     -h  Show this message
     -u  Updates a specific branch when given an argument or updates current branch if none is given 
     -b  Deploy (checkout) a specified branch.
-  EOF
+EOF
 }
-
-updatebranch =
-checkoutbranch =
 
 while getopts ":hub:" OPTION
 do
@@ -25,10 +22,12 @@ do
       exit 1
       ;;
     u)
-      updatebranch=$OPTARG
+      echo "we will pull latest updates on current branch"
+      exit 0
       ;;
     b)
       checkoutbranch=$OPTARG
+      ;;
     ?)
       usage
       exit 1
@@ -36,8 +35,11 @@ do
   esac
 done
 
-if [[ -z $updatebranch ]] || [[ -z $checkoutbranch ]]
+
+if [[ ! -z $checkoutbranch ]]
 then
+  echo "we will checkout " $checkoutbranch
+else
   usage
   exit 1
 fi
