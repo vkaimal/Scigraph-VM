@@ -1,0 +1,35 @@
+server:
+  type: simple
+  applicationContextPath: /scigraph
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 9000
+
+logging:
+  level: INFO
+
+graphConfiguration:
+  location: ../SciGraph-core/target/biologicalOntologies
+  indexedNodeProperties:
+    - label
+    - fragment
+  exactNodeProperties:
+    - label
+    - synonym
+  curies:
+    'HP': 'http://purl.obolibrary.org/obo/HP_'
+    'MESH': 'http://phenomebrowser.net/ontologies/mesh/mesh.owl#'
+    'DOID': 'http://purl.obolibrary.org/obo/DOID_'
+serviceMetadata:
+  name: 'Pizza Reconciliation Service'
+  identifierSpace: 'http://example.org'
+  schemaSpace: 'http://example.org'
+  view: {
+    url: 'http://localhost:9000/scigraph/refine/view/{{id}}'
+  }
+  preview: {
+    url: 'http://localhost:9000/scigraph/refine/preview/{{id}}',
+    width: 400,
+    height: 400
+  }
