@@ -6,7 +6,7 @@ In this version of SciGraph-vagrant, we have completely abstracted out of the Sc
 ignored in the .gitignore file).  All items like the build and run configuration yaml files as well as the targets and ontologies
 that they point to are now outside of the Scigraph repository.
 
-A deploy bash script `deploy.sh` is no responsible for cloning and updating the Scigraph repository when you run `vagrant up`.
+A deploy bash script `deploy.sh` is now responsible for cloning and updating the Scigraph repository when you run `vagrant up`.
 This deploy script can has options to update `-u` or switch to any branch of SciGraph `-b <branch name>`.  The deploy script will
 update or switch branches, and then run mvn -DskipTests -DskipITs install.  You will then have to build the graphs and start the 
 server.
