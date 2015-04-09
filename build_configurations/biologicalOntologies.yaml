@@ -2,7 +2,7 @@ graphConfiguration:
     # The location of the graph.
     # If this location does not exist it will be created.
     # Loading will append content to existing graphs.
-    location: target/biologicalOntologies
+    location: ../../build_configurations/target/biologicalOntologies
     indexedNodeProperties:
       - label
       - fragment
