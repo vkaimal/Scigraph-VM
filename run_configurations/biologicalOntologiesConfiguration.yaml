@@ -10,7 +10,7 @@ logging:
   level: INFO
 
 graphConfiguration:
-  location: ../build_configurations/target/biologicalOntologies
+  location: ../../build_configurations/target/biologicalOntologies
   indexedNodeProperties:
     - label
     - fragment
