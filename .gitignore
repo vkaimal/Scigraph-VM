@@ -1,3 +1,4 @@
 SciGraph
 build_configurations/targets/*/
 .vagrant
+ontologies/*.owl
