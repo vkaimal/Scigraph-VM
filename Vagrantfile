@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
 
   config.ssh.forward_agent  = true
   config.vm.network :private_network, ip: "10.33.36.99"
-  config.vm.provision :shell, inline: "cd #{path}; mvn -DskipTests -DskipITs install"
-  config.vm.provision :shell, inline: "cd #{path}/SciGraph-core; mvn exec:java -Dexec.mainClass=\"edu.sdsc.scigraph.owlapi.loader.BatchOwlLoader\" -Dexec.args=\"-c src/test/resources/biologicalOntologies.yaml\""
-  config.vm.provision :shell, inline: "cd #{path}/SciGraph-services; mvn exec:java -Dexec.mainClass=\"edu.sdsc.scigraph.services.MainApplication\" -Dexec.args=\"server src/test/resources/biologicalOntologiesConfiguration.yaml\""
+  config.vm.provision :shell, inline: "if [[ ! -d 'SciGraph' ]] then ./deploy.sh -u"
+  config.vm.provision :shell, inline: "mvn exec:java -Dexec.mainClass=\"edu.sdsc.scigraph.owlapi.loader.BatchOwlLoader\" -Dexec.args=\"-c build_configurations/biologicalOntologies.yaml\""
+  config.vm.provision :shell, inline: "mvn exec:java -Dexec.mainClass=\"edu.sdsc.scigraph.services.MainApplication\" -Dexec.args=\"server run_configurations/biologicalOntologiesConfiguration.yaml\""
 end
