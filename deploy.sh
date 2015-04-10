@@ -29,7 +29,7 @@ function generate_neo4j_graph(){
 		pushd SciGraph/SciGraph-core
 		if [[ -e ../../build_configurations/$1 ]]
 		then
-			mvn exec:java -Dexec.mainClass=\"edu.sdsc.scigraph.owlapi.loader.BatchOwlLoader\" -Dexec.args=\"-c ../../build_configurations/$1\"
+			mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.owlapi.loader.BatchOwlLoader" -Dexec.args="-c ../../build_configurations/$1"
       popd
 			#echo "starting build from $1 configuration"
 		else
@@ -48,7 +48,7 @@ function start_ontology_service(){
 		pushd SciGraph/SciGraph-services
 		if [[ -e ../../run_configurations/$1 ]]
 		then
-			mvn exec:java -Dexec.mainClass=\"edu.sdsc.scigraph.services.MainApplication\" -Dexec.args=\"server ../../run_configurations/$1\"
+			mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.services.MainApplication" -Dexec.args="server ../../run_configurations/$1"
       popd
 			#echo "running service from $1 configuration"
 		else
