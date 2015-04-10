@@ -30,6 +30,7 @@ function generate_neo4j_graph(){
 		if [[ -e ../../build_configurations/$1 ]]
 		then
 			mvn exec:java -Dexec.mainClass=\"edu.sdsc.scigraph.owlapi.loader.BatchOwlLoader\" -Dexec.args=\"-c ../../build_configurations/$1\"
+      popd
 			#echo "starting build from $1 configuration"
 		else
 			echo "$1 not found in build_configurations folder"
@@ -42,17 +43,13 @@ function generate_neo4j_graph(){
 }
 
 function start_ontology_service(){
-	if [[ ! -z $genneo4jconfig ]]
-	then
-		popd
-	fi
-
 	if [[ -d 'SciGraph/SciGraph-services' ]]
 	then
-		cd SciGraph/SciGraph-services
+		pushd SciGraph/SciGraph-services
 		if [[ -e ../../run_configurations/$1 ]]
 		then
 			mvn exec:java -Dexec.mainClass=\"edu.sdsc.scigraph.services.MainApplication\" -Dexec.args=\"server ../../run_configurations/$1\"
+      popd
 			#echo "running service from $1 configuration"
 		else
 			echo "$1 not found in run_configurations folder"
@@ -68,12 +65,13 @@ function update_scigraph(){
   
   if [[ -d 'SciGraph' ]]
   then
-    cd SciGraph
+    pushd SciGraph
     git pull https://github.com/SciCrunch/SciGraph.git
     if [[ $? -eq 0 ]]
     then
       echo "running maven install"
       mvn -DskipTests -DskipITs install
+      popd
     else
       echo "No git repository was found in the SciGraph folder"
       echo "Delete the SciGraph folder and run deply with the -u option"
@@ -82,10 +80,10 @@ function update_scigraph(){
   else
     echo 'SciGraph directory not found'
     git clone https://github.com/SciCrunch/SciGraph.git
-    cd SciGraph
+    pushd SciGraph
     echo "running maven install"
     mvn -DskipTests -DskipITs install
-    exit 0
+    popd
   fi
 }
 
