@@ -55,7 +55,9 @@ function start_ontology_service(){
       fi
 			screen -d -m mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.services.MainApplication" -Dexec.args="server ../../run_configurations/$1"
 			echo "The ontology server has been setup on a detached screen."
-      echo "To get back to the terminal running the server process (for example if you which to stop the server) excute screen -r"
+      echo "To get back to the terminal running the server process (for example if you which to stop the server):"
+      echo "1) If the script was run as part of the provisioning during 'vagrant up' excute 'sudo screen -r' after sshing into the box"
+      echo "2) If the script was run independently from within the box excute 'screen -r'"
 		else
 			echo "$1 not found in run_configurations folder"
 			exit 1
