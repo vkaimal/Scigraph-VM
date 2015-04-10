@@ -48,9 +48,14 @@ function start_ontology_service(){
 		pushd SciGraph/SciGraph-services
 		if [[ -e ../../run_configurations/$1 ]]
 		then
-			mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.services.MainApplication" -Dexec.args="server ../../run_configurations/$1"
-      popd
-			#echo "running service from $1 configuration"
+      if [[ -z "$(which screen)" ]]
+      then
+        echo "screen not found....installing screen"
+        sudo apt-get install screen
+      fi
+			screen -d -m mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.services.MainApplication" -Dexec.args="server ../../run_configurations/$1"
+			echo "The ontology server has been setup on a detached screen."
+      echo "To get back to the terminal running the server process (for example if you which to stop the server) excute screen -r"
 		else
 			echo "$1 not found in run_configurations folder"
 			exit 1
