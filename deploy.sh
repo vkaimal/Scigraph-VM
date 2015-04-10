@@ -62,6 +62,11 @@ function start_ontology_service(){
 }
 
 function update_scigraph(){
+  if [[ ! -z $runontservice ]]
+  then
+    echo "Please run the deploy script with the -u option before the -r option"
+    exit 1
+  fi
   
   if [[ -d 'SciGraph' ]]
   then
@@ -88,15 +93,20 @@ function update_scigraph(){
 }
 
 function checkout_scigraph_branch(){
+  if [[ ! -z $runontservice ]]
+  then
+    echo "Please run the deploy script with the -b option before the -r option"
+    exit 1
+  fi
   if [[ -d 'SciGraph' ]]
   then
-    cd SciGraph
+    pushd SciGraph
     git checkout $1
     if [[ $? -eq 0 ]]
     then
       echo "running maven install"
       mvn -DskipTests -DskipITs install
-      exit 0
+      popd
     fi
   else
     echo 'SciGraph directory not found'
@@ -135,6 +145,7 @@ do
 	  ;;
     b)
       checkoutbranch=$OPTARG
+      checkout_scigraph_branch $checkoutbranch
       ;;
     i)
       show_branches
@@ -145,13 +156,3 @@ do
       ;;
   esac
 done
-
-
-#if [[ ! -z $checkoutbranch ]]
-#then
- # echo "we will checkout and refactor all dependencies" $checkoutbranch
-  #checkout_scigraph_branch $checkoutbranch
-#else
- # usage
-  #exit 1
-#fi
