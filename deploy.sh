@@ -48,8 +48,8 @@ function start_ontology_service(){
 		pushd SciGraph/SciGraph-services
 		if [[ -e ../../run_configurations/$1 ]]
 		then
-			mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.services.MainApplication" -Dexec.args="server ../../run_configurations/$1"
-      popd
+			screen mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.services.MainApplication" -Dexec.args="server ../../run_configurations/$1"
+      screen -d
 			#echo "running service from $1 configuration"
 		else
 			echo "$1 not found in run_configurations folder"
