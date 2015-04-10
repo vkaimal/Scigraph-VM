@@ -11,21 +11,72 @@ usage()
     -h  Show this message
     -u  Updates the current branch of the SciGraph repository or clones the SciGraph repository if no SciGraph folder is found
     -b  Deploy (checkout) a specified branch.
+    -g  Generates Neo4j graph from ontology with a given configuration.yml file
+    -r 	Run service ontology store service using with a given configuration.yml file
     -i  Gets information about available branches
 EOF
 }
 
+function generate_neo4j_graph(){
+  if [[ ! -z $runontservice ]]
+  then
+    echo "Please run the deploy script with the -g option before the -r option"
+    exit 1
+  fi
+
+	if [[ -d 'SciGraph/SciGraph-core' ]]
+	then
+		pushd SciGraph/SciGraph-core
+		if [[ -e ../../build_configurations/$1 ]]
+		then
+			mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.owlapi.loader.BatchOwlLoader" -Dexec.args="-c ../../build_configurations/$1"
+      popd
+			#echo "starting build from $1 configuration"
+		else
+			echo "$1 not found in build_configurations folder"
+			exit 1
+		fi
+	else
+		echo "Your SciGraph folder is incomplete.  Please delete the SciGraph folder and run the deploy script with the -u parameter"
+		exit 1
+	fi
+}
+
+function start_ontology_service(){
+	if [[ -d 'SciGraph/SciGraph-services' ]]
+	then
+		pushd SciGraph/SciGraph-services
+		if [[ -e ../../run_configurations/$1 ]]
+		then
+			mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.services.MainApplication" -Dexec.args="server ../../run_configurations/$1"
+      popd
+			#echo "running service from $1 configuration"
+		else
+			echo "$1 not found in run_configurations folder"
+			exit 1
+		fi
+	else
+		echo "Your SciGraph folder is incomplete.  Please delete the SciGraph folder and run the deploy script with the -u parameter"
+		exit 1
+	fi
+}
+
 function update_scigraph(){
+  if [[ ! -z $runontservice ]]
+  then
+    echo "Please run the deploy script with the -u option before the -r option"
+    exit 1
+  fi
   
   if [[ -d 'SciGraph' ]]
   then
-    cd SciGraph
+    pushd SciGraph
     git pull https://github.com/SciCrunch/SciGraph.git
     if [[ $? -eq 0 ]]
     then
       echo "running maven install"
       mvn -DskipTests -DskipITs install
-      exit 0
+      popd
     else
       echo "No git repository was found in the SciGraph folder"
       echo "Delete the SciGraph folder and run deply with the -u option"
@@ -34,23 +85,28 @@ function update_scigraph(){
   else
     echo 'SciGraph directory not found'
     git clone https://github.com/SciCrunch/SciGraph.git
-    cd SciGraph
+    pushd SciGraph
     echo "running maven install"
     mvn -DskipTests -DskipITs install
-    exit 0
+    popd
   fi
 }
 
 function checkout_scigraph_branch(){
+  if [[ ! -z $runontservice ]]
+  then
+    echo "Please run the deploy script with the -b option before the -r option"
+    exit 1
+  fi
   if [[ -d 'SciGraph' ]]
   then
-    cd SciGraph
+    pushd SciGraph
     git checkout $1
     if [[ $? -eq 0 ]]
     then
       echo "running maven install"
       mvn -DskipTests -DskipITs install
-      exit 0
+      popd
     fi
   else
     echo 'SciGraph directory not found'
@@ -69,7 +125,7 @@ function show_branches(){
   fi
 }
 
-while getopts ":huib:" OPTION
+while getopts ":hug:r:ib:" OPTION
 do
   case $OPTION in
     h)
@@ -79,8 +135,17 @@ do
     u)
       update_scigraph
       ;;
+    g)
+      genneo4jconfig=$OPTARG
+      generate_neo4j_graph $genneo4jconfig
+      ;;
+    r)
+	  runontservice=$OPTARG
+	  start_ontology_service $runontservice
+	  ;;
     b)
       checkoutbranch=$OPTARG
+      checkout_scigraph_branch $checkoutbranch
       ;;
     i)
       show_branches
@@ -91,13 +156,3 @@ do
       ;;
   esac
 done
-
-
-if [[ ! -z $checkoutbranch ]]
-then
-  echo "we will checkout and refactor all dependencies" $checkoutbranch
-  checkout_scigraph_branch $checkoutbranch
-else
-  usage
-  exit 1
-fi
