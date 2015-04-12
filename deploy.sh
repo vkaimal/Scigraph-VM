@@ -17,6 +17,270 @@ usage()
 EOF
 }
 
+function initialize_scigraph_build_configuration_file(){
+  if [[ ! -d 'build_configurations' ]]
+  then
+    mkdir build_configurations
+  fi
+
+  if [[ ! -d 'build_configurations/target' ]]
+  then
+    mkdir build_configurations/target
+  fi
+
+  if [[ -e build_configurations/$1 ]]
+  then
+    mv build_configurations/$1 build_configurations/$1.old
+    touch build_configurations/$1
+    before_ontologies_section='yes'
+    OLD_IFS="$IFS"
+    IFS=
+    while read graph_build_config_details
+    do
+      if [[ $before_ontologies_section == 'yes' ]]
+      then
+        echo $graph_build_config_details >> build_configurations/$1
+        if  [[ $graph_build_config_details == 'ontologies:' ]]
+        then
+          before_ontologies_section='no'
+        fi
+      fi
+    done < build_configurations/$1.old
+    IFS="$OLD_IFS"
+  else
+    filename=$1
+    target_directory=${filename%.yaml} 
+    echo 'graphConfiguration:'>build_configurations/$1
+    echo '    location: ../../build_configurations/target/'$target_directory>>build_configurations/$1
+    echo '    indexedNodeProperties:'>>build_configurations/$1
+    echo '      - label'>>build_configurations/$1
+    echo '      - fragment'>>build_configurations/$1
+    echo '    exactNodeProperties:'>>build_configurations/$1
+    echo '      - label'>>build_configurations/$1
+    echo '      - synonym'>>build_configurations/$1
+    echo 'ontologies:'>>build_configurations/$1
+  fi
+
+  if [[ ! -d 'ontologies' ]]
+  then
+    mkdir ontologies
+  fi
+}
+
+function initialize_scigraph_run_configuration_file(){
+  if [[ ! -d 'run_configurations' ]]
+  then
+    mkdir run_configurations
+  fi
+
+  if [[ -e run_configurations/$1 ]]
+  then
+    mv run_configurations/$1 run_configurations/$1.old
+    touch run_configurations/$1
+    before_curies_section='yes'
+    OLD_IFS="$IFS"
+    IFS=
+    while read graph_run_config_details
+    do
+      if [[ $before_curies_section == 'yes' ]]
+      then
+        echo $graph_run_config_details >> run_configurations/$1
+        if [[ $graph_run_config_details == '  curies:' ]]
+        then
+          before_curies_section='no'
+        fi
+      fi
+    done < run_configurations/$1.old
+    IFS="$OLD_IFS"
+  else
+    echo 'server:'>run_configurations/$1
+    echo '  type: simple'>>run_configurations/$1
+    echo '  applicationContextPath: /scigraph'>>run_configurations/$1
+    echo '  adminContextPath: /admin'>>run_configurations/$1
+    echo '  connector:'>>run_configurations/$1
+    echo '    type: http'>>run_configurations/$1
+    echo '    port: 9000'>>run_configurations/$1
+    echo 'logging:'>>run_configurations/$1
+    echo '  level: INFO'>>run_configurations/$1
+    echo 'graphConfiguration:'>>run_configurations/$1
+    echo '  location: ../../build_configurations/target/biologicalOntologies'>>run_configurations/$1
+    echo '  indexedNodeProperties:'>>run_configurations/$1
+    echo '    - label'>>run_configurations/$1
+    echo '    - fragment'>>run_configurations/$1
+    echo '  exactNodeProperties:'>>run_configurations/$1
+    echo '    - label'>>run_configurations/$1
+    echo '    - synonym'>>run_configurations/$1
+    echo '  curies:'>>run_configurations/$1
+  fi
+}
+
+
+function insert_scigraph_graph_ontology(){
+  echo '  - url: ../../ontologies/'$2 >> build_configurations/$1
+  echo '    reasonerConfiguration:' >> build_configurations/$1
+  echo '      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory' >> build_configurations/$1
+}
+
+function insert_scigraph_graph_curries(){
+  echo "    '"$2"': '"$3"'" >> run_configurations/$1
+}
+
+function insert_scigraph_graph_data_after_ontologies(){
+  if [[ ! -e build_configurations/$1.old ]]
+  then
+    echo 'categories:' >> build_configurations/$1
+    echo 'mappedProperties:' >> build_configurations/$1
+    echo '  - name: label # The name of the new property' >> build_configurations/$1
+    echo '    properties: # The list of properties mapped to the new property' >> build_configurations/$1
+    echo '    - http://www.w3.org/2000/01/rdf-schema#label' >> build_configurations/$1
+    echo '  - name: comment' >> build_configurations/$1
+    echo '    properties:' >> build_configurations/$1
+    echo '    - http://www.w3.org/2000/01/rdf-schema#comment' >> build_configurations/$1
+    echo '  - name: synonym' >> build_configurations/$1
+    echo '    properties:' >> build_configurations/$1
+  else
+    in_ontologies_section='no'
+    past_ontologies_section='no'
+    OLD_IFS="$IFS"
+    IFS=
+    while read graph_build_config_details
+    do
+      if [[ $in_ontologies_section == 'yes' ]]
+      then
+        if [[ $graph_build_config_details != \ * ]]
+        then
+          past_ontologies_section='yes'
+          in_ontologies_section='no'
+          echo $graph_build_config_details >> build_configurations/$1
+        fi
+      elif [[ $past_ontologies_section == 'yes' ]]
+      then
+        echo $graph_build_config_details >> build_configurations/$1
+      elif [[ $graph_build_config_details == 'ontologies:' ]]
+      then
+        in_ontologies_section='yes'
+      fi
+    done < build_configurations/$1.old
+    IFS="$OLD_IFS"
+  fi
+}
+
+function insert_scigraph_graph_data_after_curies(){
+  if [[ ! -e run_configurations/$1.old ]]
+  then
+    echo "serviceMetadata:" >> run_configurations/$1
+    echo "  name: 'Pizza Reconciliation Service'" >> run_configurations/$1
+    echo "  identifierSpace: 'http://example.org'" >> run_configurations/$1
+    echo "  schemaSpace: 'http://example.org'" >> run_configurations/$1
+    echo "  view: {" >> run_configurations/$1
+    echo "    url: 'http://localhost:9000/scigraph/refine/view/{{id}}'" >> run_configurations/$1
+    echo "  }" >> run_configurations/$1
+    echo "  preview: {" >> run_configurations/$1
+    echo "    url: 'http://localhost:9000/scigraph/refine/preview/{{id}}'," >> run_configurations/$1
+    echo "    width: 400," >> run_configurations/$1
+    echo "    height: 400" >> run_configurations/$1
+    echo "  }" >> run_configurations/$1
+  else
+    in_curies_section='no'
+    past_curies_section='no'
+    OLD_IFS="$IFS"
+    IFS=
+    while read graph_run_config_details
+    do
+      if [[ $in_curies_section == 'yes' ]]
+      then
+        if [[ $graph_run_config_details != \ \ \ \ * ]]
+        then
+          past_curies_section='yes'
+          in_curies_section='no'
+          echo $graph_run_config_details >> run_configurations/$1
+        fi
+      elif [[ $past_curies_section == 'yes' ]]
+      then
+        echo $graph_run_config_details >> run_configurations/$1
+      elif [[ $graph_run_config_details == '  curies:' ]]
+      then
+        in_curies_section='yes'
+      fi
+    done < run_configurations/$1.old
+    IFS="$OLD_IFS"
+  fi
+}
+
+function download_ontology_file(){
+  if [[ ! -d 'ontologies' ]]
+  then
+    mkdir ontologies
+  fi
+  echo "we will run curl -z ontologies/$2 -o ontologies/$2 $1/$2"
+}
+
+function get_ontologies_config_file_parser(){
+  declare -A configuration_array
+  currentrow=0
+
+  if [[ ! -e config.lp ]]
+  then
+    echo 'No config.lp file found'
+    exit 1
+  fi
+
+  initialize_scigraph_build_configuration_file  $1
+  filename=$1
+  initialize_scigraph_run_configuration_file ${filename%.yaml}Configuration.yaml
+
+  while read ontology_details
+  do
+    IFS=' '
+    currentcolumn=0
+    for ontology_properties in $ontology_details; do
+      IFS='='
+      position='key'
+
+      for ontology_key_value_pair in $ontology_properties; do
+        #echo $position
+        if [[ $position == 'key' ]]
+        then
+          #echo $position
+          position='value'
+          #echo "key"
+        elif [[ $position == 'value' ]]
+        then
+          position='key'
+          case $currentcolumn in
+            0) ontology_url=$ontology_key_value_pair
+               ;;
+            1) ontology_file_name=$ontology_key_value_pair
+               ;;
+            2) ontology_curie_alias=$ontology_key_value_pair
+               ;;
+            3) ontology_curie_url=$ontology_key_value_pair
+               ;;
+          esac
+          #configuration_array[$currentcolumn, $currentrow]=$ontology_key_value_pair
+
+          currentcolumn=$((currentcolumn+1))
+
+          #echo "value"
+        fi
+        #echo "$currentcolumn, $currentrow"
+      done
+      IFS=' '
+    done
+    download_ontology_file $ontology_url $ontology_file_name
+    insert_scigraph_graph_ontology $1 $ontology_file_name
+    insert_scigraph_graph_curries ${filename%.yaml}Configuration.yaml $ontology_curie_alias $ontology_curie_url
+
+    #process_ontology_configuration $1 $ontology_url $ontology_file_name $ontology_curie_alias $ontology_curie_url
+    #currentrow=$((currentrow+1))
+  done < config.lp
+  insert_scigraph_graph_data_after_ontologies $1
+  insert_scigraph_graph_data_after_curies ${filename%.yaml}Configuration.yaml
+
+  #echo  ${configuration_array[1, 0]}
+  #printf '%s\n' "${configuration_array[@]}"
+}
+
 function generate_neo4j_graph(){
   if [[ ! -z $runontservice ]]
   then
@@ -132,12 +396,17 @@ function show_branches(){
   fi
 }
 
-while getopts ":hug:r:ib:" OPTION
+while getopts ":hug:r:ib:x:" OPTION
 do
   case $OPTION in
     h)
       usage
       exit 1
+      ;;
+    x)
+      configuration_file=$OPTARG
+      get_ontologies_config_file_parser $configuration_file
+      exit 0
       ;;
     u)
       update_scigraph
