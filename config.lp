@@ -1,0 +1,1 @@
+url=https://s3.amazonaws.com/ontologies-bucket ontology_name=hp.owl curie_alias=HP curie_path=http://purl.obolibrary.org/obo/HP_
