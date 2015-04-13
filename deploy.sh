@@ -138,9 +138,9 @@ function insert_scigraph_graph_data_after_ontologies(){
     echo '    - http://www.w3.org/2000/01/rdf-schema#comment' >> build_configurations/$1
     echo '  - name: synonym' >> build_configurations/$1
     echo '    properties:' >> build_configurations/$1
-    echo '    - http://www.geneontology.org/formats/oboInOwl#hasExactSynonym'
-    echo '    - http://purl.obolibrary.org/obo#Synonym'
-    echo '    - http://purl.obolibrary.org/obo/go#systematic_synonym'
+    echo '    - http://www.geneontology.org/formats/oboInOwl#hasExactSynonym' >> build_configurations/$1
+    echo '    - http://purl.obolibrary.org/obo#Synonym' >> build_configurations/$1
+    echo '    - http://purl.obolibrary.org/obo/go#systematic_synonym' >> build_configurations/$1
   else
     in_ontologies_section='no'
     past_ontologies_section='no'
