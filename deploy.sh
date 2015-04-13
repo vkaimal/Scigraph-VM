@@ -211,7 +211,12 @@ function insert_scigraph_graph_data_after_curies(){
 }
 
 function download_ontology_file(){
-  curl -z ontologies/$2 -o ontologies/$2 $1
+  if [[ ! -e ontologies/$2 ]]
+  then
+    curl -z ontologies/$2 -o ontologies/$2 $1
+  else
+    curl -o ontologies/$2 $1
+  fi
 }
 
 function get_ontologies_config_file_parser(){
