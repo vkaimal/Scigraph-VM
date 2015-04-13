@@ -211,7 +211,7 @@ function insert_scigraph_graph_data_after_curies(){
 }
 
 function download_ontology_file(){
-  if [[ ! -e ontologies/$2 ]]
+  if [[ -e ontologies/$2 ]]
   then
     curl -z ontologies/$2 -o ontologies/$2 $1
   else
