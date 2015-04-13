@@ -1,9 +1,6 @@
 $script = <<SCRIPT
 cd /var/www/sites/SciGraph-vagrant
-if [[ ! -d 'SciGraph' ]]
-then
 ./deploy.sh -u -x biologicalOntologies.yaml -g biologicalOntologies.yaml -r biologicalOntologiesConfiguration.yaml
-fi
 SCRIPT
 
 Vagrant.configure("2") do |config|
