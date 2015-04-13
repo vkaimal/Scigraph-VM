@@ -211,11 +211,7 @@ function insert_scigraph_graph_data_after_curies(){
 }
 
 function download_ontology_file(){
-  if [[ ! -d 'ontologies' ]]
-  then
-    mkdir ontologies
-  fi
-  echo "we will run curl -z ontologies/$2 -o ontologies/$2 $1"
+  curl -z ontologies/$2 -o ontologies/$2 $1
 }
 
 function get_ontologies_config_file_parser(){
