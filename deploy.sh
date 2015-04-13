@@ -267,7 +267,7 @@ function get_ontologies_config_file_parser(){
       done
       IFS=' '
     done
-    download_ontology_file $ontology_url
+    download_ontology_file $ontology_url $ontology_file_name
     insert_scigraph_graph_ontology $1 $ontology_file_name
     insert_scigraph_graph_curries ${filename%.yaml}Configuration.yaml $ontology_curie_alias $ontology_curie_url
 
