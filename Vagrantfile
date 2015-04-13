@@ -2,7 +2,7 @@ $script = <<SCRIPT
 cd /var/www/sites/SciGraph-vagrant
 if [[ ! -d 'SciGraph' ]]
 then
-./deploy.sh -u -g biologicalOntologies.yaml -r biologicalOntologiesConfiguration.yaml
+./deploy.sh -u -x biologicalOntologies.yaml -g biologicalOntologies.yaml -r biologicalOntologiesConfiguration.yaml
 fi
 SCRIPT
 
