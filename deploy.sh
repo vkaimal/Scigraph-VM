@@ -298,7 +298,7 @@ function generate_neo4j_graph(){
   target_directory=${filename%.yaml}
   if [[ -e build_configurations/target/$target_directory ]]
   then
-    echo 'Removing previous graph db store folder build_configurations/target/$target_directory'
+    echo -e '\r\nRemoving previous graph db store folder build_configurations/target/'$target_directory
     sudo rm -r build_configurations/target/$target_directory
   fi
 
