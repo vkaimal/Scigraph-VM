@@ -410,7 +410,6 @@ do
     x)
       configuration_file=$OPTARG
       get_ontologies_config_file_parser $configuration_file
-      exit 0
       ;;
     u)
       update_scigraph
