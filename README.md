@@ -58,7 +58,7 @@ Also please makes sure you stop the server before running the deploy script
 The config.pl file
 ------------------
 This file tells the deploy.sh script which ontologies to load and were to get them from.  The format is as follows
-`[full url to the ontology=url] [ontology filename=filename] [alias for CURIE=alias] [url for CURIE=url]`
+`[full url to the ontology|url] [ontology filename|filename] [alias for CURIE|alias] [url for CURIE|url]`
 
 Please follow the format that is in the default config.lp
 
