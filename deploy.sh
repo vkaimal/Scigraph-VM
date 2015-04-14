@@ -240,7 +240,7 @@ function get_ontologies_config_file_parser(){
     IFS=' '
     currentcolumn=0
     for ontology_properties in $ontology_details; do
-      IFS='='
+      IFS='|'
       position='key'
 
       for ontology_key_value_pair in $ontology_properties; do
