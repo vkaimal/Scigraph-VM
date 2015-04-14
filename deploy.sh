@@ -129,6 +129,8 @@ function insert_scigraph_graph_data_after_ontologies(){
   if [[ ! -e build_configurations/$1.old ]]
   then
     echo 'categories:' >> build_configurations/$1
+    echo '    http://purl.obolibrary.org/obo/HP_0001909 : leukemia' >> build_configurations/$1
+    echo '    http://purl.obolibrary.org/obo/HP_0001911 : granulocytes' >> build_configurations/$1
     echo 'mappedProperties:' >> build_configurations/$1
     echo '  - name: label # The name of the new property' >> build_configurations/$1
     echo '    properties: # The list of properties mapped to the new property' >> build_configurations/$1
