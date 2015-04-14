@@ -19,5 +19,5 @@ Vagrant.configure("2") do |config|
 
   config.ssh.forward_agent  = true
   config.vm.network :private_network, ip: "10.33.36.99"
-  config.vm.provision :shell, inline: $script
+  config.vm.provision :shell, inline: $script, privileged: false
 end
