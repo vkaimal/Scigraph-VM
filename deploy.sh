@@ -129,6 +129,8 @@ function insert_scigraph_graph_data_after_ontologies(){
   if [[ ! -e build_configurations/$1.old ]]
   then
     echo 'categories:' >> build_configurations/$1
+    echo '    http://purl.obolibrary.org/obo/HP_0001909 : leukemia' >> build_configurations/$1
+    echo '    http://purl.obolibrary.org/obo/HP_0001911 : granulocytes' >> build_configurations/$1
     echo 'mappedProperties:' >> build_configurations/$1
     echo '  - name: label # The name of the new property' >> build_configurations/$1
     echo '    properties: # The list of properties mapped to the new property' >> build_configurations/$1
@@ -211,11 +213,12 @@ function insert_scigraph_graph_data_after_curies(){
 }
 
 function download_ontology_file(){
-  if [[ ! -d 'ontologies' ]]
+  if [[ -e ontologies/$2 ]]
   then
-    mkdir ontologies
+    curl -z ontologies/$2 -o ontologies/$2 $1
+  else
+    curl -o ontologies/$2 $1
   fi
-  echo "we will run curl -z ontologies/$2 -o ontologies/$2 $1"
 }
 
 function get_ontologies_config_file_parser(){
@@ -291,6 +294,14 @@ function generate_neo4j_graph(){
     exit 1
   fi
 
+  filename=$1
+  target_directory=${filename%.yaml}
+  if [[ -e build_configurations/target/$target_directory ]]
+  then
+    echo -e '\r\nRemoving previous graph db store folder build_configurations/target/'$target_directory
+    sudo rm -r build_configurations/target/$target_directory
+  fi
+
 	if [[ -d 'SciGraph/SciGraph-core' ]]
 	then
 		pushd SciGraph/SciGraph-core
@@ -322,9 +333,7 @@ function start_ontology_service(){
       fi
 			screen -d -m mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.services.MainApplication" -Dexec.args="server ../../run_configurations/$1"
 			echo "The ontology server has been setup on a detached screen."
-      echo "To get back to the terminal running the server process (for example if you which to stop the server):"
-      echo "1) If the script was run as part of the provisioning during 'vagrant up' excute 'sudo screen -r' after sshing into the box"
-      echo "2) If the script was run independently from within the box excute 'screen -r'"
+      echo "To get back to the terminal running the server process (for example if you which to stop the server) execute 'screen -r' in the vagrant box"
 		else
 			echo "$1 not found in run_configurations folder"
 			exit 1
@@ -409,7 +418,6 @@ do
     x)
       configuration_file=$OPTARG
       get_ontologies_config_file_parser $configuration_file
-      exit 0
       ;;
     u)
       update_scigraph
