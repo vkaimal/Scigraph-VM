@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "scigraphbox"
   config.vm.box_url = "https://s3.amazonaws.com/kabenla_boxes/scigraph.box"
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", 2048]
+    vb.customize ["modifyvm", :id, "--memory", 6144]
   end
 
   project = 'SciGraph-vagrant'
