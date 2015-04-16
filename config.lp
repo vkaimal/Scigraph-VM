@@ -7,3 +7,4 @@ url|ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi.owl ontology_name|che
 url|http://www.berkeleybop.org/ontologies/so.owl ontology_name|so.owl curie_alias|SO curie_path|http://purl.obolibrary.org/obo/SO_
 url|http://www.berkeleybop.org/ontologies/fma.owl ontology_name|fma.owl curie_alias|FMA curie_path|http://purl.obolibrary.org/obo/FMA_
 url|http://cell-ontology.googlecode.com/svn/trunk/src/ontology/cl.owl ontology_name|cl.owl curie_alias|CL curie_path|http://purl.obolibrary.org/obo/CL_
+url|https://s3.amazonaws.com/ontologies-bucket/hugo.owl ontology_name|hugo.owl curie_alias|HUGO curie_path|http://ncicb.nci.nih.gov/xml/owl/EVS/Hugo.owl#
