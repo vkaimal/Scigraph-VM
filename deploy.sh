@@ -135,6 +135,7 @@ function insert_scigraph_graph_data_after_ontologies(){
     echo '  - name: label # The name of the new property' >> build_configurations/$1
     echo '    properties: # The list of properties mapped to the new property' >> build_configurations/$1
     echo '    - http://www.w3.org/2000/01/rdf-schema#label' >> build_configurations/$1
+    echo '    - http://www.w3.org/2004/02/skos/core#prefLabel' >> build_configurations/$1
     echo '  - name: comment' >> build_configurations/$1
     echo '    properties:' >> build_configurations/$1
     echo '    - http://www.w3.org/2000/01/rdf-schema#comment' >> build_configurations/$1
@@ -143,6 +144,7 @@ function insert_scigraph_graph_data_after_ontologies(){
     echo '    - http://www.geneontology.org/formats/oboInOwl#hasExactSynonym' >> build_configurations/$1
     echo '    - http://purl.obolibrary.org/obo#Synonym' >> build_configurations/$1
     echo '    - http://purl.obolibrary.org/obo/go#systematic_synonym' >> build_configurations/$1
+    echo '    - http://www.w3.org/2004/02/skos/core#altLabel'
   else
     in_ontologies_section='no'
     past_ontologies_section='no'
