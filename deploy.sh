@@ -333,7 +333,7 @@ function start_ontology_service(){
         echo "screen not found....installing screen"
         sudo apt-get install screen
       fi
-			screen -d -m mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.services.MainApplication" -Dexec.args="server ../../run_configurations/$1"
+			screen -L -S onto -d -m mvn exec:java -Dexec.mainClass="edu.sdsc.scigraph.services.MainApplication" -Dexec.args="server ../../run_configurations/$1"
 			echo "The ontology server has been setup on a detached screen."
       echo "To get back to the terminal running the server process (for example if you which to stop the server) execute 'screen -r' in the vagrant box"
 		else
