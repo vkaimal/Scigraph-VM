@@ -144,7 +144,7 @@ function insert_scigraph_graph_data_after_ontologies(){
     echo '    - http://www.geneontology.org/formats/oboInOwl#hasExactSynonym' >> build_configurations/$1
     echo '    - http://purl.obolibrary.org/obo#Synonym' >> build_configurations/$1
     echo '    - http://purl.obolibrary.org/obo/go#systematic_synonym' >> build_configurations/$1
-    echo '    - http://www.w3.org/2004/02/skos/core#altLabel'
+    echo '    - http://www.w3.org/2004/02/skos/core#altLabel' >> build_configurations/$1
   else
     in_ontologies_section='no'
     past_ontologies_section='no'
