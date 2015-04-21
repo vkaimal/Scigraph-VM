@@ -1,7 +1,10 @@
 SciGraph
 build_configurations/target/*/
 build_configurations/target/*/
+build_configurations/*.yaml.old
 build_configurations/*.yaml
+run_configurations/*.yaml.old
 run_configurations/*.yaml
 .vagrant
 ontologies/*.owl
+ontologies/*.ttl
