@@ -7,3 +7,4 @@ run_configurations/*.yaml.old
 run_configurations/*.yaml
 .vagrant
 ontologies/*.owl
+ontologies/*.ttl
