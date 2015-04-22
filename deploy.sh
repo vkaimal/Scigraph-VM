@@ -168,6 +168,7 @@ function insert_scigraph_graph_data_after_ontologies(){
         in_ontologies_section='yes'
       fi
     done < build_configurations/$1.old
+    sudo rm -r build_configurations/$1.old
     IFS="$OLD_IFS"
   fi
 }
@@ -210,6 +211,7 @@ function insert_scigraph_graph_data_after_curies(){
         in_curies_section='yes'
       fi
     done < run_configurations/$1.old
+    sudo rm -r run_configurations/$1.old
     IFS="$OLD_IFS"
   fi
 }
@@ -217,8 +219,11 @@ function insert_scigraph_graph_data_after_curies(){
 function download_ontology_file(){
   if [[ -e ontologies/$2 ]]
   then
+    echo 'Checking for and downloading updates to' $2 'from' $1
     curl -z ontologies/$2 -o ontologies/$2 $1
   else
+    echo $2 'not found in local ontologies.'
+    echo 'Downloading' $2 'from' $1
     curl -o ontologies/$2 $1
   fi
 }

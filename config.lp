@@ -8,4 +8,4 @@ url|http://www.berkeleybop.org/ontologies/so.owl ontology_name|so.owl curie_alia
 url|http://www.berkeleybop.org/ontologies/fma.owl ontology_name|fma.owl curie_alias|FMA curie_path|http://purl.obolibrary.org/obo/FMA_
 url|http://cell-ontology.googlecode.com/svn/trunk/src/ontology/cl.owl ontology_name|cl.owl curie_alias|CL curie_path|http://purl.obolibrary.org/obo/CL_
 url|https://s3.amazonaws.com/ontologies-bucket/hugo.owl ontology_name|hugo.owl curie_alias|HUGO curie_path|http://ncicb.nci.nih.gov/xml/owl/EVS/Hugo.owl#
-url|https://s3.amazonaws.com/ontologies-bucket/OMIM.ttl ontology_name|OMIM.ttl curie_alias|OMIM curie_path|http://purl.bioontology.org/ontology/OMIM#
+url|https://s3.amazonaws.com/ontologies-bucket/OMIM.ttl ontology_name|OMIM.ttl curie_alias|OMIM curie_path|http://purl.bioontology.org/ontology/OMIM
