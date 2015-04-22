@@ -1,4 +1,5 @@
 $script = <<SCRIPT
+export MAVEN_OPTS='-server -d64 -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+AggressiveOpts -XX:+UseFastAccessorMethods -XX:+UseBiasedLocking -XX:NewRatio=2 -Xms2G -Xmx6G -XX:-ReduceInitialCardMarks'
 cd /var/www/sites/SciGraph-vagrant
 ./deploy.sh -u -x biologicalOntologies.yaml -g biologicalOntologies.yaml -r biologicalOntologiesConfiguration.yaml
 SCRIPT
