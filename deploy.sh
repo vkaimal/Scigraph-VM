@@ -219,7 +219,7 @@ function insert_scigraph_graph_data_after_curies(){
 function download_ontology_file(){
   if [[ -e ontologies/$2 ]]
   then
-    echo 'Checking for and downloading updates to' $2 'from' $1
+    echo 'Checking for updates to' $2 'from' $1
     curl -z ontologies/$2 -o ontologies/$2 $1
   else
     echo $2 'not found in local ontologies.'
