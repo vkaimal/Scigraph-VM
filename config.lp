@@ -1,4 +1,4 @@
-url|http://build.berkeleybop.org/job/build-pheno-ontologies/lastBuild/artifact/ontology/hp.owl ontology_name|hp.owl curie_alias|HP curie_path|http://purl.obolibrary.org/obo/HP_
+url|https://s3.amazonaws.com/ontologies-bucket/hp.owl ontology_name|hp.owl curie_alias|HP curie_path|http://purl.obolibrary.org/obo/HP_
 url|http://www.berkeleybop.org/ontologies/doid.owl ontology_name|doid.owl curie_alias|DOID curie_path|http://purl.obolibrary.org/obo/DOID_
 url|http://data.bioontology.org/ontologies/RH-MESH/submissions/3/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb ontology_name|MeSH.owl curie_alias|MESH curie_path|http://phenomebrowser.net/ontologies/mesh/mesh.owl#
 url|http://svn.code.sf.net/p/obi/code/releases/2015-03-17/obi.owl ontology_name|obi.owl curie_alias|OBI curie_path|http://purl.obolibrary.org/obo/OBI_
