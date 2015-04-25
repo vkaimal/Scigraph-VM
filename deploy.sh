@@ -111,17 +111,17 @@ function initialize_scigraph_run_configuration_file(){
     echo '    - label'>>run_configurations/$1
     echo '    - synonym'>>run_configurations/$1
     echo '  curies:'>>run_configurations/$1
-    echo "    'HP': 'http://purl.obolibrary.org/obo/HP_'"
-    echo "    'DOID': 'http://purl.obolibrary.org/obo/DOID_'"
-    echo "    'MESH': 'http://phenomebrowser.net/ontologies/mesh/mesh.owl#'"
-    echo "    'OBI': 'http://purl.obolibrary.org/obo/OBI_'"
-    echo "    'GO': 'http://purl.obolibrary.org/obo/GO_'"
-    echo "    'CHEBI': 'http://purl.obolibrary.org/obo/CHEBI_'"
-    echo "    'SO': 'http://purl.obolibrary.org/obo/SO_'"
-    echo "    'FMA': 'http://purl.obolibrary.org/obo/FMA_'"
-    echo "    'CL': 'http://purl.obolibrary.org/obo/CL_'"
-    echo "    'HUGO': 'http://ncicb.nci.nih.gov/xml/owl/EVS/Hugo.owl#'"
-    echo "    'OMIM': 'http://purl.bioontology.org/ontology/OMIM'"
+    echo "    'HP': 'http://purl.obolibrary.org/obo/HP_'" >> run_configurations/$1
+    echo "    'DOID': 'http://purl.obolibrary.org/obo/DOID_'" >> run_configurations/$1
+    echo "    'MESH': 'http://phenomebrowser.net/ontologies/mesh/mesh.owl#'" >> run_configurations/$1
+    echo "    'OBI': 'http://purl.obolibrary.org/obo/OBI_'" >> run_configurations/$1
+    echo "    'GO': 'http://purl.obolibrary.org/obo/GO_'" >> run_configurations/$1
+    echo "    'CHEBI': 'http://purl.obolibrary.org/obo/CHEBI_'" >> run_configurations/$1
+    echo "    'SO': 'http://purl.obolibrary.org/obo/SO_'" >> run_configurations/$1
+    echo "    'FMA': 'http://purl.obolibrary.org/obo/FMA_'" >> run_configurations/$1
+    echo "    'CL': 'http://purl.obolibrary.org/obo/CL_'" >> run_configurations/$1
+    echo "    'HUGO': 'http://ncicb.nci.nih.gov/xml/owl/EVS/Hugo.owl#'" >> run_configurations/$1
+    echo "    'OMIM': 'http://purl.bioontology.org/ontology/OMIM'" >> run_configurations/$1
   fi
 }
 
