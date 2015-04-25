@@ -7,7 +7,7 @@ to specify which ontologies you want to load into the Ontology store.
 
 At the heart of SciGraph-vagrant is the deploy.sh script.  This script 
 * reads the config.lp file 
-* downloads the necessary ontologies from the specified urls applying all the specified CURIES
+* checks for ontology updates and downloads the necessary ontologies from the specified urls
 * loads all the SciGraph dependencies by running mvn install
 * it will even go and clone/pull the latest updates from https://github.com/SciCrunch/SciGraph
 
@@ -58,7 +58,7 @@ Also please makes sure you stop the server before running the deploy script
 The config.pl file
 ------------------
 This file tells the deploy.sh script which ontologies to load and were to get them from.  The format is as follows
-`[full url to the ontology|url] [ontology filename|filename] [alias for CURIE|alias] [url for CURIE|url]`
+`[full url to the ontology|url] [ontology filename|filename]`
 
 Please follow the format that is in the default config.lp
 

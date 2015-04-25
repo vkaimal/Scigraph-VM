@@ -111,6 +111,17 @@ function initialize_scigraph_run_configuration_file(){
     echo '    - label'>>run_configurations/$1
     echo '    - synonym'>>run_configurations/$1
     echo '  curies:'>>run_configurations/$1
+    echo "    'HP': 'http://purl.obolibrary.org/obo/HP_'" >> run_configurations/$1
+    echo "    'DOID': 'http://purl.obolibrary.org/obo/DOID_'" >> run_configurations/$1
+    echo "    'MESH': 'http://phenomebrowser.net/ontologies/mesh/mesh.owl#'" >> run_configurations/$1
+    echo "    'OBI': 'http://purl.obolibrary.org/obo/OBI_'" >> run_configurations/$1
+    echo "    'GO': 'http://purl.obolibrary.org/obo/GO_'" >> run_configurations/$1
+    echo "    'CHEBI': 'http://purl.obolibrary.org/obo/CHEBI_'" >> run_configurations/$1
+    echo "    'SO': 'http://purl.obolibrary.org/obo/SO_'" >> run_configurations/$1
+    echo "    'FMA': 'http://purl.obolibrary.org/obo/FMA_'" >> run_configurations/$1
+    echo "    'CL': 'http://purl.obolibrary.org/obo/CL_'" >> run_configurations/$1
+    echo "    'HUGO': 'http://ncicb.nci.nih.gov/xml/owl/EVS/Hugo.owl#'" >> run_configurations/$1
+    echo "    'OMIM': 'http://purl.bioontology.org/ontology/OMIM'" >> run_configurations/$1
   fi
 }
 
@@ -265,10 +276,6 @@ function get_ontologies_config_file_parser(){
                ;;
             1) ontology_file_name=$ontology_key_value_pair
                ;;
-            2) ontology_curie_alias=$ontology_key_value_pair
-               ;;
-            3) ontology_curie_url=$ontology_key_value_pair
-               ;;
           esac
           #configuration_array[$currentcolumn, $currentrow]=$ontology_key_value_pair
 
@@ -282,8 +289,8 @@ function get_ontologies_config_file_parser(){
     done
     download_ontology_file $ontology_url $ontology_file_name
     insert_scigraph_graph_ontology $1 $ontology_file_name
-    insert_scigraph_graph_curries ${filename%.yaml}Configuration.yaml $ontology_curie_alias $ontology_curie_url
 
+    #insert_scigraph_graph_curries ${filename%.yaml}Configuration.yaml $ontology_curie_alias $ontology_curie_url
     #process_ontology_configuration $1 $ontology_url $ontology_file_name $ontology_curie_alias $ontology_curie_url
     #currentrow=$((currentrow+1))
   done < config.lp
