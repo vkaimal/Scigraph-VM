@@ -1,11 +1,11 @@
-url|https://s3.amazonaws.com/ontologies-bucket/hp.owl ontology_name|hp.owl curie_alias|HP curie_path|http://purl.obolibrary.org/obo/HP_
-url|http://www.berkeleybop.org/ontologies/doid.owl ontology_name|doid.owl curie_alias|DOID curie_path|http://purl.obolibrary.org/obo/DOID_
-url|http://data.bioontology.org/ontologies/RH-MESH/submissions/3/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb ontology_name|MeSH.owl curie_alias|MESH curie_path|http://phenomebrowser.net/ontologies/mesh/mesh.owl#
-url|http://svn.code.sf.net/p/obi/code/releases/2015-03-17/obi.owl ontology_name|obi.owl curie_alias|OBI curie_path|http://purl.obolibrary.org/obo/OBI_
-url|http://www.geneontology.org/ontology/go.owl ontology_name|go.owl curie_alias|GO curie_path|http://purl.obolibrary.org/obo/GO_
-url|ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi.owl ontology_name|chebi.owl curie_alias|CHEBI curie_path|http://purl.obolibrary.org/obo/CHEBI_
-url|http://www.berkeleybop.org/ontologies/so.owl ontology_name|so.owl curie_alias|SO curie_path|http://purl.obolibrary.org/obo/SO_
-url|http://www.berkeleybop.org/ontologies/fma.owl ontology_name|fma.owl curie_alias|FMA curie_path|http://purl.obolibrary.org/obo/FMA_
-url|http://cell-ontology.googlecode.com/svn/trunk/src/ontology/cl.owl ontology_name|cl.owl curie_alias|CL curie_path|http://purl.obolibrary.org/obo/CL_
-url|https://s3.amazonaws.com/ontologies-bucket/hugo.owl ontology_name|hugo.owl curie_alias|HUGO curie_path|http://ncicb.nci.nih.gov/xml/owl/EVS/Hugo.owl#
-url|https://s3.amazonaws.com/ontologies-bucket/OMIM.ttl ontology_name|OMIM.ttl curie_alias|OMIM curie_path|http://purl.bioontology.org/ontology/OMIM
+url|https://s3.amazonaws.com/ontologies-bucket/hp.owl ontology_name|hp.owl
+url|http://www.berkeleybop.org/ontologies/doid.owl ontology_name|doid.owl
+url|http://data.bioontology.org/ontologies/RH-MESH/submissions/3/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb ontology_name|MeSH.owl
+url|http://svn.code.sf.net/p/obi/code/releases/2015-03-17/obi.owl ontology_name|obi.owl
+url|http://www.geneontology.org/ontology/go.owl ontology_name|go.owl
+url|ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi.owl ontology_name|chebi.owl
+url|http://www.berkeleybop.org/ontologies/so.owl ontology_name|so.owl
+url|http://www.berkeleybop.org/ontologies/fma.owl ontology_name|fma.owl
+url|http://cell-ontology.googlecode.com/svn/trunk/src/ontology/cl.owl ontology_name|cl.owl
+url|https://s3.amazonaws.com/ontologies-bucket/hugo.owl ontology_name|hugo.owl
+url|https://s3.amazonaws.com/ontologies-bucket/OMIM.ttl ontology_name|OMIM.ttl
