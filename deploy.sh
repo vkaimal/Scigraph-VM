@@ -73,26 +73,8 @@ function initialize_scigraph_run_configuration_file(){
     mkdir run_configurations
   fi
 
-  if [[ -e run_configurations/$1 ]]
+  if [[ ! -e run_configurations/$1 ]]
   then
-    mv run_configurations/$1 run_configurations/$1.old
-    touch run_configurations/$1
-    before_curies_section='yes'
-    OLD_IFS="$IFS"
-    IFS=
-    while read graph_run_config_details
-    do
-      if [[ $before_curies_section == 'yes' ]]
-      then
-        echo $graph_run_config_details >> run_configurations/$1
-        if [[ $graph_run_config_details == '  curies:' ]]
-        then
-          before_curies_section='no'
-        fi
-      fi
-    done < run_configurations/$1.old
-    IFS="$OLD_IFS"
-  else
     echo 'server:'>run_configurations/$1
     echo '  type: simple'>>run_configurations/$1
     echo '  applicationContextPath: /scigraph'>>run_configurations/$1
@@ -122,6 +104,18 @@ function initialize_scigraph_run_configuration_file(){
     echo "    'CL': 'http://purl.obolibrary.org/obo/CL_'" >> run_configurations/$1
     echo "    'HUGO': 'http://ncicb.nci.nih.gov/xml/owl/EVS/Hugo.owl#'" >> run_configurations/$1
     echo "    'OMIM': 'http://purl.bioontology.org/ontology/OMIM'" >> run_configurations/$1
+    echo "serviceMetadata:" >> run_configurations/$1
+    echo "  name: 'Pizza Reconciliation Service'" >> run_configurations/$1
+    echo "  identifierSpace: 'http://example.org'" >> run_configurations/$1
+    echo "  schemaSpace: 'http://example.org'" >> run_configurations/$1
+    echo "  view: {" >> run_configurations/$1
+    echo "    url: 'http://localhost:9000/scigraph/refine/view/{{id}}'" >> run_configurations/$1
+    echo "  }" >> run_configurations/$1
+    echo "  preview: {" >> run_configurations/$1
+    echo "    url: 'http://localhost:9000/scigraph/refine/preview/{{id}}'," >> run_configurations/$1
+    echo "    width: 400," >> run_configurations/$1
+    echo "    height: 400" >> run_configurations/$1
+    echo "  }" >> run_configurations/$1
   fi
 }
 
@@ -130,10 +124,6 @@ function insert_scigraph_graph_ontology(){
   echo '  - url: ../../ontologies/'$2 >> build_configurations/$1
   echo '    reasonerConfiguration:' >> build_configurations/$1
   echo '      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory' >> build_configurations/$1
-}
-
-function insert_scigraph_graph_curries(){
-  echo "    '"$2"': '"$3"'" >> run_configurations/$1
 }
 
 function insert_scigraph_graph_data_after_ontologies(){
@@ -180,49 +170,6 @@ function insert_scigraph_graph_data_after_ontologies(){
       fi
     done < build_configurations/$1.old
     sudo rm -r build_configurations/$1.old
-    IFS="$OLD_IFS"
-  fi
-}
-
-function insert_scigraph_graph_data_after_curies(){
-  if [[ ! -e run_configurations/$1.old ]]
-  then
-    echo "serviceMetadata:" >> run_configurations/$1
-    echo "  name: 'Pizza Reconciliation Service'" >> run_configurations/$1
-    echo "  identifierSpace: 'http://example.org'" >> run_configurations/$1
-    echo "  schemaSpace: 'http://example.org'" >> run_configurations/$1
-    echo "  view: {" >> run_configurations/$1
-    echo "    url: 'http://localhost:9000/scigraph/refine/view/{{id}}'" >> run_configurations/$1
-    echo "  }" >> run_configurations/$1
-    echo "  preview: {" >> run_configurations/$1
-    echo "    url: 'http://localhost:9000/scigraph/refine/preview/{{id}}'," >> run_configurations/$1
-    echo "    width: 400," >> run_configurations/$1
-    echo "    height: 400" >> run_configurations/$1
-    echo "  }" >> run_configurations/$1
-  else
-    in_curies_section='no'
-    past_curies_section='no'
-    OLD_IFS="$IFS"
-    IFS=
-    while read graph_run_config_details
-    do
-      if [[ $in_curies_section == 'yes' ]]
-      then
-        if [[ $graph_run_config_details != \ \ \ \ * ]]
-        then
-          past_curies_section='yes'
-          in_curies_section='no'
-          echo $graph_run_config_details >> run_configurations/$1
-        fi
-      elif [[ $past_curies_section == 'yes' ]]
-      then
-        echo $graph_run_config_details >> run_configurations/$1
-      elif [[ $graph_run_config_details == '  curies:' ]]
-      then
-        in_curies_section='yes'
-      fi
-    done < run_configurations/$1.old
-    sudo rm -r run_configurations/$1.old
     IFS="$OLD_IFS"
   fi
 }
@@ -289,14 +236,8 @@ function get_ontologies_config_file_parser(){
     done
     download_ontology_file $ontology_url $ontology_file_name
     insert_scigraph_graph_ontology $1 $ontology_file_name
-
-    #insert_scigraph_graph_curries ${filename%.yaml}Configuration.yaml $ontology_curie_alias $ontology_curie_url
-    #process_ontology_configuration $1 $ontology_url $ontology_file_name $ontology_curie_alias $ontology_curie_url
-    #currentrow=$((currentrow+1))
   done < config.lp
   insert_scigraph_graph_data_after_ontologies $1
-  insert_scigraph_graph_data_after_curies ${filename%.yaml}Configuration.yaml
-
   #echo  ${configuration_array[1, 0]}
   #printf '%s\n' "${configuration_array[@]}"
 }
