@@ -1,0 +1,59 @@
+graphConfiguration:
+    location: ../../build_configurations/target/biologicalOntologies
+    indexedNodeProperties:
+      - label
+      - fragment
+    exactNodeProperties:
+      - label
+      - synonym
+ontologies:
+  - url: ../../ontologies/hp.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/doid.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/MeSH.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/obi.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/go.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/chebi.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/so.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/fma.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/cl.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/hugo.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/OMIM.ttl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+categories:
+    http://purl.obolibrary.org/obo/HP_0001909 : leukemia
+    http://purl.obolibrary.org/obo/HP_0001911 : granulocytes
+mappedProperties:
+  - name: label # The name of the new property
+    properties: # The list of properties mapped to the new property
+    - http://www.w3.org/2000/01/rdf-schema#label
+    - http://www.w3.org/2004/02/skos/core#prefLabel
+  - name: comment
+    properties:
+    - http://www.w3.org/2000/01/rdf-schema#comment
+  - name: synonym
+    properties:
+    - http://www.geneontology.org/formats/oboInOwl#hasExactSynonym
+    - http://purl.obolibrary.org/obo#Synonym
+    - http://purl.obolibrary.org/obo/go#systematic_synonym
+    - http://www.w3.org/2004/02/skos/core#altLabel
