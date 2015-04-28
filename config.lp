@@ -9,5 +9,5 @@ url|http://www.berkeleybop.org/ontologies/fma.owl ontology_name|fma.owl
 url|http://cell-ontology.googlecode.com/svn/trunk/src/ontology/cl.owl ontology_name|cl.owl
 url|https://s3.amazonaws.com/ontologies-bucket/hugo.owl ontology_name|hugo.owl
 url|https://s3.amazonaws.com/ontologies-bucket/OMIM.ttl ontology_name|OMIM.ttl
-url|http://purl.obolibrary.org/obo/bto.owl ontology_name|bto.owl
+url|http://www.berkeleybop.org/ontologies/bto.owl ontology_name|bto.owl
 url|http://data.bioontology.org/ontologies/ORDO/submissions/7/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb ontology_name|ordo.owl
