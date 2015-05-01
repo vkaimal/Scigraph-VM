@@ -40,6 +40,12 @@ ontologies:
   - url: ../../ontologies/OMIM.ttl
     reasonerConfiguration:
       factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/bto.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/ordo.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
 categories:
     http://purl.obolibrary.org/obo/HP_0001909 : leukemia
     http://purl.obolibrary.org/obo/HP_0001911 : granulocytes
