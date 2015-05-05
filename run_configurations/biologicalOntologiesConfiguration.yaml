@@ -10,6 +10,7 @@ logging:
 graphConfiguration:
   location: ../../build_configurations/target/biologicalOntologies
   indexedNodeProperties:
+    - category
     - label
     - fragment
   exactNodeProperties:
