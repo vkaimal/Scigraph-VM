@@ -53,6 +53,7 @@ function initialize_scigraph_build_configuration_file(){
     echo 'graphConfiguration:'>build_configurations/$1
     echo '    location: ../../build_configurations/target/'$target_directory>>build_configurations/$1
     echo '    indexedNodeProperties:'>>build_configurations/$1
+    echo '      - category'>>build_configurations/$1
     echo '      - label'>>build_configurations/$1
     echo '      - fragment'>>build_configurations/$1
     echo '    exactNodeProperties:'>>build_configurations/$1
@@ -87,6 +88,7 @@ function initialize_scigraph_run_configuration_file(){
     echo 'graphConfiguration:'>>run_configurations/$1
     echo '  location: ../../build_configurations/target/biologicalOntologies'>>run_configurations/$1
     echo '  indexedNodeProperties:'>>run_configurations/$1
+    echo '    - category'>>run_configurations/$1
     echo '    - label'>>run_configurations/$1
     echo '    - fragment'>>run_configurations/$1
     echo '  exactNodeProperties:'>>run_configurations/$1
