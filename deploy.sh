@@ -177,14 +177,21 @@ function insert_scigraph_graph_data_after_ontologies(){
 }
 
 function download_ontology_file(){
-  if [[ -e ontologies/$2 ]]
+  if curl --output /dev/null --silent --head --fail $1;
   then
-    echo 'Checking for updates to' $2 'from' $1
-    curl -z ontologies/$2 -o ontologies/$2 $1
+    if [[ -e ontologies/$2 ]]
+    then
+      echo 'Checking for updates to' $2 'from' $1
+      curl -z ontologies/$2 -o ontologies/$2 $1
+      insert_scigraph_graph_ontology $1 $2
+    else
+      echo $2 'not found in local ontologies.'
+      echo 'Downloading' $2 'from' $1
+      curl -o ontologies/$2 $1
+      insert_scigraph_graph_ontology $1 $2
+    fi
   else
-    echo $2 'not found in local ontologies.'
-    echo 'Downloading' $2 'from' $1
-    curl -o ontologies/$2 $1
+    echo 'There was an error downloading ' $2 'from' $1
   fi
 }
 
@@ -237,7 +244,6 @@ function get_ontologies_config_file_parser(){
       IFS=' '
     done
     download_ontology_file $ontology_url $ontology_file_name
-    insert_scigraph_graph_ontology $1 $ontology_file_name
   done < config.lp
   insert_scigraph_graph_data_after_ontologies $1
   #echo  ${configuration_array[1, 0]}
