@@ -194,7 +194,7 @@ function download_ontology_file(){
     echo 'There was an error downloading' $2 'from' $1
     if [[ -e ontologies/$2 ]]
     then
-      echo 'Using an old version of' $2 'to build graph'
+      echo 'Using a previously downloaded version of' $2 'to build graph'
       insert_scigraph_graph_ontology $3 $2
     else
       echo $2 'will not be added to the graph'
