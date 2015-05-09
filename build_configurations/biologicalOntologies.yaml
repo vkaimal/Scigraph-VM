@@ -64,3 +64,7 @@ mappedProperties:
     - http://purl.obolibrary.org/obo#Synonym
     - http://purl.obolibrary.org/obo/go#systematic_synonym
     - http://www.w3.org/2004/02/skos/core#altLabel
+    - http://purl.bioontology.org/ontology/SNOMED-Ethnic-Group#SYNONYM_MTH_PT
+    - http://purl.bioontology.org/ontology/SNOMED-Ethnic-Group#SYNONYM_MTH_FN
+    - http://purl.bioontology.org/ontology/SNOMED-Ethnic-Group#SYNONYM_IS
+    - http://purl.bioontology.org/ontology/SNOMED-Ethnic-Group#SYNONYM_FN
