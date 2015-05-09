@@ -183,15 +183,22 @@ function download_ontology_file(){
     then
       echo 'Checking for updates to' $2 'from' $1
       curl -z ontologies/$2 -o ontologies/$2 $1
-      insert_scigraph_graph_ontology $1 $2
+      insert_scigraph_graph_ontology $3 $2
     else
       echo $2 'not found in local ontologies.'
       echo 'Downloading' $2 'from' $1
       curl -o ontologies/$2 $1
-      insert_scigraph_graph_ontology $1 $2
+      insert_scigraph_graph_ontology $3 $2
     fi
   else
-    echo 'There was an error downloading ' $2 'from' $1
+    echo 'There was an error downloading' $2 'from' $1
+    if [[ -e ontologies/$2 ]]
+    then
+      echo 'Using an old version of' $2 'to build graph'
+      insert_scigraph_graph_ontology $3 $2
+    else
+      echo $2 'will not be added to the graph'
+    fi
   fi
 }
 
@@ -243,7 +250,7 @@ function get_ontologies_config_file_parser(){
       done
       IFS=' '
     done
-    download_ontology_file $ontology_url $ontology_file_name
+    download_ontology_file $ontology_url $ontology_file_name $1
   done < config.lp
   insert_scigraph_graph_data_after_ontologies $1
   #echo  ${configuration_array[1, 0]}
