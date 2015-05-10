@@ -42,35 +42,35 @@ cypherResources:
   - path: /dynamic/getnodes
     query: |
             MATCH (n)
-            where (n.label = {term} AND n.uri =~ ".*(?i)${ontologies_1}#.*") OR 
-            (n.label = {term} AND n.uri =~ "(?i)${ontologies_2}#.*") OR 
-            (n.label = {term} AND n.uri =~ "(?i)${ontologies_3}#.*") OR 
-            (n.label = {term} AND n.uri =~ "(?i)${ontologies_4}#.*")
+            where (n.label =~ "(?i)${term}" AND n.uri =~ ".*(?i)${ontologies_1}#.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_2}#.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_3}#.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_4}#.*")
             RETURN distinct n
     operations:
       - nickname: get_term_from_particular_ontologies
-        summary: Get a term from a specified list of ontologies
+        summary: Get a term from a specified list of ontologies.  If the first URI is blank all ontologies will be seached.
         parameters:
           - name: term
             description: The term to find # try HP_0000528
             paramType: query
           - name: ontologies_1
-            description: An ontology CURIE from which to search for the terms
+            description: An ontology URI from which to search for the terms
             paramType: query
             required: false
             type: string
           - name: ontologies_2
-            description: An ontology CURIE from which to search for the terms
+            description: An ontology URI from which to search for the terms
             paramType: query
             required: false
             type: string
           - name: ontologies_3
-            description: An ontology CURIE from which to search for the terms
+            description: An ontology URI from which to search for the terms
             paramType: query
             required: false
             type: string
           - name: ontologies_4
-            description: An ontology CURIE from which to search for the terms
+            description: An ontology URI from which to search for the terms
             paramType: query
             required: false
             type: string
