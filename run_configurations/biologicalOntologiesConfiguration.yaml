@@ -36,6 +36,55 @@ graphConfiguration:
     'UBERON': 'http://purl.obolibrary.org/obo/UBERON_'
     'ORDO': 'http://www.orpha.net/ORDO/Orphanet_'
     'BTO': 'http://purl.obolibrary.org/obo/BTO_'
+    'SNOMED-EG': 'http://purl.bioontology.org/ontology/SNOMED-Ethnic-Group#'
+    'CSP': 'http://purl.bioontology.org/ontology/CSP/'
+cypherResources:
+  - path: /dynamic/getnodes
+    query: |
+            MATCH (n)
+            where (n.label =~ "(?i)${term}" AND n.uri =~ ".*(?i)${ontologies_1}#.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_2}#.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_3}#.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_4}#.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ ".*(?i)${ontologies_1}_.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_2}_.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_3}_.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_4}_.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ ".*(?i)${ontologies_1}/.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_2}/.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_3}/.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_4}/.*")
+            RETURN distinct n
+    operations:
+      - nickname: get_term_from_particular_ontologies
+        summary: Get a term from a specified list of ontologies.  If the first URI is blank all ontologies will be seached.
+        parameters:
+          - name: term
+            description: The term to find # try HP_0000528
+            paramType: query
+          - name: ontologies_1
+            description: An ontology URI from which to search for the terms
+            paramType: query
+            required: false
+            type: string
+          - name: ontologies_2
+            description: An ontology URI from which to search for the terms
+            paramType: query
+            required: false
+            type: string
+          - name: ontologies_3
+            description: An ontology URI from which to search for the terms
+            paramType: query
+            required: false
+            type: string
+          - name: ontologies_4
+            description: An ontology URI from which to search for the terms
+            paramType: query
+            required: false
+            type: string
+
+
+
 serviceMetadata:
   name: 'Pizza Reconciliation Service'
   identifierSpace: 'http://example.org'
