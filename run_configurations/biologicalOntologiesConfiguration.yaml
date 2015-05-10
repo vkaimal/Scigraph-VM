@@ -46,7 +46,7 @@ cypherResources:
             (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_2}#.*") OR
             (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_3}#.*") OR
             (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_4}#.*") OR
-             (n.label =~ "(?i)${term}" AND n.uri =~ ".*(?i)${ontologies_1}_.*") OR
+            (n.label =~ "(?i)${term}" AND n.uri =~ ".*(?i)${ontologies_1}_.*") OR
             (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_2}_.*") OR
             (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_3}_.*") OR
             (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_4}_.*") OR
