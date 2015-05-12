@@ -11,5 +11,5 @@ url|https://s3.amazonaws.com/ontologies-bucket/hugo.owl ontology_name|hugo.owl
 url|https://s3.amazonaws.com/ontologies-bucket/OMIM.ttl ontology_name|OMIM.ttl
 url|http://www.berkeleybop.org/ontologies/bto.owl ontology_name|bto.owl
 url|http://data.bioontology.org/ontologies/ORDO/submissions/7/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb ontology_name|ordo.owl
-url|http://data.bioontology.org/ontologies/CRISP/submissions/5/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb ontology_name|CRISP.ttl
+url|https://s3.amazonaws.com/ontologies-bucket/CRISP.ttl ontology_name|CRISP.ttl
 url|http://data.bioontology.org/ontologies/SNOMED-Ethnic-Group/submissions/2/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb ontology_name|SNOMED-Ethnic_group.owl
