@@ -47,6 +47,12 @@ ontologies:
   - url: ../../ontologies/ordo.owl
     reasonerConfiguration:
       factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/CRISP.ttl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+  - url: ../../ontologies/SNOMED-Ethnic_group.owl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
 categories:
     http://purl.obolibrary.org/obo/HP_0001909 : leukemia
     http://purl.obolibrary.org/obo/HP_0001911 : granulocytes
