@@ -42,18 +42,18 @@ cypherResources:
   - path: /dynamic/getnodes
     query: |
             MATCH (n)
-            where (n.label =~ "(?i)${term}" AND n.uri =~ ".*(?i)${ontologies_1}#.*") OR
-            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_2}#.*") OR
-            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_3}#.*") OR
-            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_4}#.*") OR
-            (n.label =~ "(?i)${term}" AND n.uri =~ ".*(?i)${ontologies_1}_.*") OR
-            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_2}_.*") OR
-            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_3}_.*") OR
-            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_4}_.*") OR
-            (n.label =~ "(?i)${term}" AND n.uri =~ ".*(?i)${ontologies_1}/.*") OR
-            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_2}/.*") OR
-            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_3}/.*") OR
-            (n.label =~ "(?i)${term}" AND n.uri =~ "(?i)${ontologies_4}/.*")
+            where (n.label = {term} AND n.uri =~ ".*(?i)${ontologies_1}#.*") OR
+            (n.label = {term} AND n.uri =~ "(?i)${ontologies_2}#.*") OR
+            (n.label = {term} AND n.uri =~ "(?i)${ontologies_3}#.*") OR
+            (n.label = {term} AND n.uri =~ "(?i)${ontologies_4}#.*") OR
+            (n.label = {term} AND n.uri =~ ".*(?i)${ontologies_1}_.*") OR
+            (n.label = {term} AND n.uri =~ "(?i)${ontologies_2}_.*") OR
+            (n.label = {term} AND n.uri =~ "(?i)${ontologies_3}_.*") OR
+            (n.label = {term} AND n.uri =~ "(?i)${ontologies_4}_.*") OR
+            (n.label = {term} AND n.uri =~ ".*(?i)${ontologies_1}/.*") OR
+            (n.label = {term} AND n.uri =~ "(?i)${ontologies_2}/.*") OR
+            (n.label = {term} AND n.uri =~ "(?i)${ontologies_3}/.*") OR
+            (n.label = {term} AND n.uri =~ "(?i)${ontologies_4}/.*")
             RETURN distinct n
     operations:
       - nickname: get_term_from_particular_ontologies
@@ -82,8 +82,18 @@ cypherResources:
             paramType: query
             required: false
             type: string
-
-
+  - path: /dynamic/sameas
+    query: |
+            MATCH (n)
+            where (n.label = {term} AND n.`http://www.geneontology.org/formats/oboInOwl#hasDbXref` IS NOT NULL) 
+            RETURN distinct n
+    operations:
+      - nickname: get_term_from_particular_ontologies
+        summary: Get a term from a specified list of ontologies.  If the first URI is blank all ontologies will be seached.
+        parameters:
+          - name: term
+            description: The term to find # try HP_0000528
+            paramType: query
 
 serviceMetadata:
   name: 'Pizza Reconciliation Service'
