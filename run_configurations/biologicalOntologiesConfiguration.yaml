@@ -82,14 +82,14 @@ cypherResources:
             paramType: query
             required: false
             type: string
-  - path: /dynamic/sameas
+  - path: /dynamic/xref
     query: |
             MATCH (n)
             where (n.label = {term} AND n.`http://www.geneontology.org/formats/oboInOwl#hasDbXref` IS NOT NULL) 
             RETURN distinct n
     operations:
       - nickname: get_term_from_particular_ontologies
-        summary: Get a term from a specified list of ontologies.  If the first URI is blank all ontologies will be seached.
+        summary: Display nodes that have an exact term as a label and hasDBXref as a property.
         parameters:
           - name: term
             description: The term to find # try HP_0000528
