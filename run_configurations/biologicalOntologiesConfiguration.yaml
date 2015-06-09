@@ -38,6 +38,7 @@ graphConfiguration:
     'BTO': 'http://purl.obolibrary.org/obo/BTO_'
     'SNOMED-EG': 'http://purl.bioontology.org/ontology/SNOMED-Ethnic-Group#'
     'CSP': 'http://purl.bioontology.org/ontology/CSP/'
+    'SNOMED-CT': 'id/'
 cypherResources:
   - path: /dynamic/getnodes
     query: |
