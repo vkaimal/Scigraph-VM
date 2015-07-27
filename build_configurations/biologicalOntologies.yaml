@@ -8,49 +8,7 @@ graphConfiguration:
       - label
       - synonym
 ontologies:
-  - url: ../../ontologies/hp.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/doid.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/MeSH.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/obi.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/go.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/chebi.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/so.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/fma.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/cl.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/hugo.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/OMIM.ttl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
   - url: ../../ontologies/bto.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/ordo.owl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/CRISP.ttl
-    reasonerConfiguration:
-      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
-  - url: ../../ontologies/SNOMED-Ethnic_group.owl
     reasonerConfiguration:
       factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
 categories:

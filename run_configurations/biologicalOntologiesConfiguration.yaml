@@ -17,28 +17,7 @@ graphConfiguration:
     - label
     - synonym
   curies:
-    'HP': 'http://purl.obolibrary.org/obo/HP_'
-    'DOID': 'http://purl.obolibrary.org/obo/DOID_'
-    'MESHD': 'http://phenomebrowser.net/ontologies/mesh/mesh.owl#D'
-    'MESH': 'http://phenomebrowser.net/ontologies/mesh/mesh.owl#'
-    'OBI': 'http://purl.obolibrary.org/obo/OBI_'
-    'GO': 'http://purl.obolibrary.org/obo/GO_'
-    'CHEBI': 'http://purl.obolibrary.org/obo/CHEBI_'
-    'SO': 'http://purl.obolibrary.org/obo/SO_'
-    'FMA': 'http://purl.obolibrary.org/obo/FMA_'
-    'CL': 'http://purl.obolibrary.org/obo/CL_'
-    'HUGO': 'http://ncicb.nci.nih.gov/xml/owl/EVS/Hugo.owl#'
-    'OMIM': 'http://purl.bioontology.org/ontology/OMIM/'
-    'STY': 'http://purl.bioontology.org/ontology/STY/'
-    'RO': 'http://purl.obolibrary.org/obo/RO_'
-    'IAO': 'http://purl.obolibrary.org/obo/IAO_'
-    'OGMS': 'http://purl.obolibrary.org/obo/OGMS_'
-    'UBERON': 'http://purl.obolibrary.org/obo/UBERON_'
-    'ORDO': 'http://www.orpha.net/ORDO/Orphanet_'
     'BTO': 'http://purl.obolibrary.org/obo/BTO_'
-    'SNOMED-EG': 'http://purl.bioontology.org/ontology/SNOMED-Ethnic-Group#'
-    'CSP': 'http://purl.bioontology.org/ontology/CSP/'
-    'SNOMED-CT': 'http://snomed.info/id/'
 cypherResources:
   - path: /dynamic/getnodes
     query: |
