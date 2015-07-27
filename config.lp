@@ -1,16 +1,1 @@
-url|https://s3.amazonaws.com/ontologies-bucket/hp.owl ontology_name|hp.owl
-url|http://www.berkeleybop.org/ontologies/doid.owl ontology_name|doid.owl
-url|http://data.bioontology.org/ontologies/RH-MESH/submissions/3/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb ontology_name|MeSH.owl
-url|http://svn.code.sf.net/p/obi/code/releases/2015-03-17/obi.owl ontology_name|obi.owl
-url|http://www.geneontology.org/ontology/go.owl ontology_name|go.owl
-url|ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi.owl ontology_name|chebi.owl
-url|http://www.berkeleybop.org/ontologies/so.owl ontology_name|so.owl
-url|http://www.berkeleybop.org/ontologies/fma.owl ontology_name|fma.owl
-url|http://cell-ontology.googlecode.com/svn/trunk/src/ontology/cl.owl ontology_name|cl.owl
-url|https://s3.amazonaws.com/ontologies-bucket/hugo.owl ontology_name|hugo.owl
-url|https://s3.amazonaws.com/ontologies-bucket/OMIM.ttl ontology_name|OMIM.ttl
 url|http://www.berkeleybop.org/ontologies/bto.owl ontology_name|bto.owl
-url|http://data.bioontology.org/ontologies/ORDO/submissions/7/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb ontology_name|ordo.owl
-url|https://s3.amazonaws.com/ontologies-bucket/CRISP.ttl ontology_name|CRISP.ttl
-url|http://data.bioontology.org/ontologies/SNOMED-Ethnic-Group/submissions/2/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb ontology_name|SNOMED-Ethnic_group.owl
-url|https://s3.amazonaws.com/ontologies-bucket/SNOMEDCT.owl ontology_name|SNOMEDCT.owl
